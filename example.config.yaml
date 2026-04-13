@@ -1,0 +1,6 @@
+inbox: "D:\\Tendril\\Inbox"
+sources:
+  - repo: "https://github.com/owner/repo"
+    filter: "is:issue state:open assignee:your-username"
+  - repo: "https://github.com/owner/another-repo"
+    filter: "is:issue state:open assignee:your-username"

@@ -1,0 +1,13 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.vs/
+
+## Config (contains personal paths/usernames)
+config.yaml
+
+## Import log
+import-log.json
