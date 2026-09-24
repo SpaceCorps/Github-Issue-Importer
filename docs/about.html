@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About · GitHub Issue Importer</title>
+  <meta name="description" content="About GitHub Issue Importer: A high-performance native Rust CLI and agent interface for importing issues into GitHub repositories.">
+  <link rel="canonical" href="https://spacecorps.github.io/Github-Issue-Importer/about.html">
+  <meta property="og:title" content="About · GitHub Issue Importer">
+  <meta property="og:description" content="About GitHub Issue Importer: A high-performance native Rust CLI and agent interface for importing issues into GitHub repositories.">
+  <link rel="stylesheet" href="styles.css">
+  <meta property="og:url" content="https://spacecorps.github.io/Github-Issue-Importer/about.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://spacecorps.github.io/Github-Issue-Importer/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="is-agentic-site-type" content="content">
+  <style>
+    body { background: #090d16; color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; padding: 40px 20px; }
+    .content-box { max-width: 800px; margin: 0 auto; background: rgba(22, 27, 46, 0.7); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 40px; }
+    h1 { font-size: 2.2rem; margin-bottom: 20px; color: #fff; }
+    h2 { font-size: 1.4rem; margin-top: 30px; margin-bottom: 12px; color: #38bdf8; }
+    p { margin-bottom: 16px; color: #94a3b8; }
+    a { color: #38bdf8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .back { display: inline-block; margin-bottom: 24px; color: #6366f1; font-weight: 500; }
+  </style>
+</head>
+<body>
+  <div class="content-box">
+    <a href="./" class="back">&larr; Back to GitHub Issue Importer</a>
+    <h1>About GitHub Issue Importer</h1>
+    
+    <p>GitHub Issue Importer (<code>gh-issue-import</code>) is a high-performance, open-source command-line tool and programmatic automation interface designed for importing and synchronizing issues between structured YAML/JSON files, remote issue sources, and GitHub repositories. Maintained under the SpaceCorps open-source engineering collective, the project gives developers and autonomous AI agents a standalone, single-binary solution running natively on macOS, Linux, and Windows.</p>
+
+    <h2>Project Lineage & Engineering Motivation</h2>
+    <p>The original prototype was created by Niels Bosma as a .NET tool. While effective for simple sync scripts, modern CI/CD pipelines, DevOps tooling, and autonomous agent loops demand sub-second cold starts, minimal memory footprints, and zero managed runtime overhead. In 2026, SpaceCorps ported the tool to native Rust Edition 2024 with blocking HTTP, deterministic multi-account scoping, and native OS credential storage.</p>
+
+    <h2>Core Architectural Tenets</h2>
+    <p>GitHub Issue Importer is engineered around safety, determinism, and speed:</p>
+    <ul>
+      <li><strong>Idempotency By Default:</strong> Every imported issue is tracked in an import state log (<code>import-log.json</code>) and checked against existing repository issues, preventing duplicate issue spam.</li>
+      <li><strong>Hardware & OS Keystore Protection:</strong> Personal Access Tokens never touch plaintext configuration files. They are stored securely in macOS Keychain, Linux Secret Service, or Windows DPAPI.</li>
+      <li><strong>Dual Agentic Output Protocol:</strong> Output renders as human-readable YAML by default for terminal inspection, or formatted JSON via <code>--json</code> for deterministic parsing by agent tool loops and <code>jq</code>.</li>
+    </ul>
+
+    <h2>Open Source & Community</h2>
+    <p>GitHub Issue Importer is released under the MIT License and developed openly on GitHub at <a href="https://github.com/SpaceCorps/Github-Issue-Importer" target="_blank" rel="noopener noreferrer">github.com/SpaceCorps/Github-Issue-Importer</a>.</p>
+  </div>
+</body>
+</html>

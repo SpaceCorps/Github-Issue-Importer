@@ -1,0 +1,48 @@
+# GitHub Issue Importer
+
+> Fast, idempotent GitHub issue importer from YAML/JSON files and remote repositories into GitHub repos. Built in native Rust Edition 2024 for developers and autonomous AI agents.
+
+## When to Use This CLI
+
+Use the `gh-issue-import` CLI whenever you need to:
+- **Import issues from YAML/JSON files:** Bulk load structured issues with titles, markdown descriptions, labels, milestones, and assignees directly into a GitHub repository.
+- **Idempotent issue synchronization:** Safely run repeated imports without creating duplicate issues; tracked via `import-log.json`.
+- **Pre-flight validation:** Validate issue file syntax, required fields, and milestone existence using `validate` before touching the GitHub API.
+- **Migrate issues between repos:** Synchronize issues from source repositories into a target repo or local inbox directory.
+- **Agentic automation:** Drive issue migrations and automation loops deterministically via `--json` output and stable error envelopes.
+
+Do NOT use this tool if:
+- You need a full graphical issue tracker GUI (use the GitHub web interface instead).
+- You are trying to import issues into non-GitHub platforms (e.g. Jira, Linear, GitLab).
+
+## Core Agent Operating Principles
+
+1. **Explicit Account Selection:** Always pass `--account <name>` (short `-a <name>`) on commands that interact with the GitHub API. This guarantees multi-account safety across personal and organizational repos.
+2. **First-Time Setup:** Run `gh-issue-import login [name]` to authenticate with a GitHub Personal Access Token (opens browser to create token) or use `printf %s "$TOKEN" | gh-issue-import login [name] --api-key-stdin` in automated environments.
+3. **Machine-Readable Outputs:** Always supply `--json` when parsing command results in scripts or LLM tool-calling loops.
+4. **Idempotency Protection:** Every created issue is logged in `import-log.json`. Subsequent runs skip already imported issues. Use `--dry-run` to preview planned operations without modifying GitHub.
+5. **Error Handling:** Non-zero exit codes carry structured error envelopes with stable machine-readable codes (`no_account`, `auth_required`, `not_found`, `rate_limited`, `invalid_input`).
+
+## Key Command Patterns
+
+### Authentication & Accounts
+- `gh-issue-import login [name]`: Interactively authenticate and store the Personal Access Token in the OS keystore.
+- `gh-issue-import accounts list --check`: List all configured accounts and verify token validity.
+- `gh-issue-import accounts test <name>`: Verify connectivity and inspect token identity.
+
+### Validation
+- `gh-issue-import validate -f issues.yaml`: Validate YAML/JSON issue file syntax and schema locally.
+- `gh-issue-import validate -f issues.yaml -r owner/repo -a <account>`: Validate schema and verify repository/milestone existence against GitHub.
+
+### Issue Importing
+- `gh-issue-import import issues.yaml --repo owner/repo -a <account>`: Import issues into the target repository.
+- `gh-issue-import import issues.yaml --repo owner/repo -a <account> --dry-run`: Preview import operations without creating issues.
+- `gh-issue-import import issues.yaml --repo owner/repo -a <account> --skip-existing`: Skip issues whose titles already exist in the target repo.
+- `gh-issue-import import -c config.yaml -a <account>`: Batch import from config sources into target repo or inbox.
+
+## Documentation Links
+- Full Documentation: https://spacecorps.github.io/Github-Issue-Importer/
+- Detailed Agent Manual: https://spacecorps.github.io/Github-Issue-Importer/llms-full.txt
+- Authentication Guide: https://spacecorps.github.io/Github-Issue-Importer/auth.md
+- Pricing: https://spacecorps.github.io/Github-Issue-Importer/pricing.md
+- GitHub Repository: https://github.com/SpaceCorps/Github-Issue-Importer

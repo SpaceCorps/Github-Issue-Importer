@@ -1,0 +1,17 @@
+{
+  "name": "GitHub Issue Importer Agent",
+  "description": "Agent interface and fast CLI tool for importing and synchronizing issues between YAML/JSON files and GitHub repositories with full idempotency.",
+  "url": "https://spacecorps.github.io/Github-Issue-Importer/",
+  "version": "1.0.0",
+  "capabilities": ["issue-import", "github-api", "validation", "idempotency"],
+  "skills": [
+    {
+      "name": "gh-issue-import",
+      "url": "https://spacecorps.github.io/Github-Issue-Importer/llms.txt"
+    }
+  ],
+  "contact": {
+    "email": "contact@spacecorps.dev",
+    "url": "https://spacecorps.github.io/Github-Issue-Importer/contact.html"
+  }
+}

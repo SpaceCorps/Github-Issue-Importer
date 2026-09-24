@@ -1,0 +1,70 @@
+# GitHub Issue Importer - Comprehensive Agent Reference Manual
+
+> An exhaustive technical manual for autonomous agents driving the GitHub Issue Importer CLI (`gh-issue-import`).
+
+## When To Use This Tool
+- Automated importing of issues from YAML/JSON files into GitHub repositories.
+- Mass migration of issues from legacy issue trackers or exported bug databases.
+- Multi-repository issue synchronization and inbox archiving.
+- Deterministic, repeatable issue imports in CI/CD pipelines without duplicate creation.
+
+## Exit Codes and Error Envelopes
+
+Every error response on stderr conforms to the standard envelope structure:
+```json
+{
+  "error": "Human readable summary",
+  "code": "error_code_string",
+  "detail": "Extended debugging context",
+  "remediation": "Exact command or action needed to fix"
+}
+```
+
+Exit code numbers match the error code contract:
+- `0`: Success (`ok`)
+- `1`: `error` - Unclassified failure
+- `2`: `network` - Transport failure or 5xx server error
+- `3`: `auth_required` - Token missing, expired, or lacking `repo` scope
+- `4`: `not_found` - Repository or resource does not exist
+- `5`: `rate_limited` - GitHub API rate limit reached
+- `6`: `invalid_input` - Bad command flags, missing arguments, or invalid file schema
+- `7`: `no_account` - `--account <name>` was not specified
+
+## Safety Guardrails
+
+1. **Account Scoping**:
+   There is intentionally no global default account fallback for commands interacting with the GitHub API. This ensures an agent never creates issues in the wrong organization or personal account.
+2. **Idempotency Log**:
+   Every created issue is recorded by key in `import-log.json`. Subsequent runs skip these issues automatically.
+3. **Secrets Isolation**:
+   GitHub Personal Access Tokens are stored exclusively in the host OS credential store (macOS Keychain, Windows DPAPI, Linux Secret Service).
+4. **Dry-Run Preview**:
+   Always run with `--dry-run` first when generating or importing large issue batches to verify title, milestone, and label parsing.
+
+## Issue File Format Reference
+
+Issues can be provided as a top-level array or an object containing an `issues` list:
+
+```yaml
+issues:
+  - title: "Support dark mode in web UI"
+    body: "Provide user-configurable dark theme toggle in navigation bar."
+    labels:
+      - "enhancement"
+      - "ui"
+    milestone: "v1.0"
+    assignees:
+      - "octocat"
+  - title: "Fix API rate limit backoff jitter"
+    body: "Implement exponential backoff with full jitter on HTTP 429."
+    labels:
+      - "bug"
+```
+
+Fields:
+- `title` (required string): Issue title
+- `body` (optional string): Issue description in Markdown
+- `labels` (optional array of strings): Label names
+- `milestone` (optional string or integer): Milestone title or milestone number
+- `assignees` (optional array of strings): GitHub usernames
+- `id` (optional string): Custom unique identifier for idempotency tracking

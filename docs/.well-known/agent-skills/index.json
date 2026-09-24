@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "gh-issue-import",
+      "description": "Import issues from YAML/JSON files and remote sources into GitHub repositories with labels, milestones, assignees, and idempotency tracking.",
+      "type": "skill-md",
+      "url": "https://spacecorps.github.io/Github-Issue-Importer/llms.txt"
+    }
+  ]
+}

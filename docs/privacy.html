@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy · GitHub Issue Importer</title>
+  <meta name="description" content="Privacy policy for GitHub Issue Importer: Zero telemetry, local OS keystore credential storage, and developer data ownership principles.">
+  <link rel="canonical" href="https://spacecorps.github.io/Github-Issue-Importer/privacy.html">
+  <meta property="og:title" content="Privacy Policy · GitHub Issue Importer">
+  <meta property="og:description" content="Privacy policy for GitHub Issue Importer: Zero telemetry, local OS keystore credential storage, and developer data ownership principles.">
+  <link rel="stylesheet" href="styles.css">
+  <meta property="og:url" content="https://spacecorps.github.io/Github-Issue-Importer/privacy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://spacecorps.github.io/Github-Issue-Importer/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="is-agentic-site-type" content="content">
+  <style>
+    body { background: #090d16; color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; padding: 40px 20px; }
+    .content-box { max-width: 800px; margin: 0 auto; background: rgba(22, 27, 46, 0.7); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 40px; }
+    h1 { font-size: 2.2rem; margin-bottom: 20px; color: #fff; }
+    h2 { font-size: 1.4rem; margin-top: 30px; margin-bottom: 12px; color: #38bdf8; }
+    p { margin-bottom: 16px; color: #94a3b8; }
+    a { color: #38bdf8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .back { display: inline-block; margin-bottom: 24px; color: #6366f1; font-weight: 500; }
+  </style>
+</head>
+<body>
+  <div class="content-box">
+    <a href="./" class="back">&larr; Back to GitHub Issue Importer</a>
+    <h1>Privacy Policy & Data Security</h1>
+    
+    <p>Last updated: September 24, 2026. This Privacy Policy details the data handling, storage practices, and network communications of the GitHub Issue Importer (<code>gh-issue-import</code>) CLI and documentation website.</p>
+
+    <h2>1. Zero Telemetry & Local Execution</h2>
+    <p>GitHub Issue Importer contains zero tracking code, zero analytics SDKs, and zero telemetry beacons. We believe that developer command-line workflows and issue data must remain entirely confidential. The tool does not collect usage statistics, IP addresses, command logs, or crash telemetry back to SpaceCorps servers. Network requests are sent exclusively to the GitHub API (<code>https://api.github.com</code> or your custom GitHub Enterprise API URL) to execute user-requested imports.</p>
+
+    <h2>2. Cryptographic Credential Protection</h2>
+    <p>GitHub Personal Access Tokens are sensitive credentials. By default, GitHub Issue Importer never saves tokens in plaintext files on disk. Instead, tokens are stored directly in your host operating system's native hardware-backed credential vault: macOS Keychain via the system security subsystem, Windows Data Protection API (DPAPI) encrypted under user-specific credentials, or the freedesktop.org Secret Service daemon via libsecret on Linux.</p>
+
+    <h2>3. Local Configuration & State Logs</h2>
+    <p>Non-sensitive metadata (account aliases and GitHub usernames) is stored locally in an owner-restricted YAML file (chmod 0600 on Unix) in your standard user configuration directory. Import state logs (<code>import-log.json</code>) record issue IDs and URLs locally solely to provide idempotency and prevent duplicate issue creation.</p>
+
+    <h2>4. Static Website Hosting</h2>
+    <p>This documentation website is hosted as a static site via GitHub Pages. It contains no tracking scripts, cookies, or tracking beacons. Standard web server access logs are handled directly by GitHub in accordance with GitHub's Privacy Statement.</p>
+  </div>
+</body>
+</html>
