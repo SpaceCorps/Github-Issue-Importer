@@ -1,0 +1,13 @@
+issues:
+  - title: "Support dark mode in web UI"
+    body: "Add CSS theme toggle and dark mode palette variables."
+    labels:
+      - "enhancement"
+      - "ui"
+    milestone: "v1.0"
+    assignees:
+      - "octocat"
+  - title: "Fix API rate limit backoff jitter"
+    body: "Implement exponential backoff with full jitter on HTTP 429."
+    labels:
+      - "bug"

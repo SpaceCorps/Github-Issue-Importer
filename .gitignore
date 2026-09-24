@@ -1,4 +1,8 @@
-## .NET
+target/
+*.tmp
+.lock
+
+## .NET legacy artifacts
 bin/
 obj/
 *.user
@@ -6,8 +10,7 @@ obj/
 *.cache
 *.vs/
 
-## Config (contains personal paths/usernames)
+## Local configs & logs
 config.yaml
-
-## Import log
 import-log.json
+.import-log.json

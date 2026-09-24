@@ -1,4 +1,6 @@
-inbox: "D:\\Tendril\\Inbox"
+inbox: "./inbox"
+# Optional: target_repo to import directly into another GitHub repository
+# target_repo: "SpaceCorps/Github-Issue-Importer"
 sources:
   - repo: "https://github.com/owner/repo"
     filter: "is:issue state:open assignee:your-username"
